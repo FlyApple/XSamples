@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <X3RDPARTY_INCLUDE_DIR>$(SolutionDir)\..\X3rdParty\include</X3RDPARTY_INCLUDE_DIR>
+    <X3RDPARTY_LIB_DIR>$(SolutionDir)\..\X3rdParty\Build\lib\$(Platform)\$(Configuration)</X3RDPARTY_LIB_DIR>
+    <X3RDPARTY_BIN_DIR>$(SolutionDir)\..\X3rdParty\Build\bin\$(Platform)\$(Configuration)</X3RDPARTY_BIN_DIR>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(X3RDPARTY_INCLUDE_DIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(X3RDPARTY_LIB_DIR);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="X3RDPARTYINCLUDE_DIR">
+      <Value>$(X3RDPARTY_INCLUDE_DIR)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="X3RDPARTY_LIB_DIR">
+      <Value>$(X3RDPARTY_LIB_DIR)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="X3RDPARTY_BIN_DIR">
+      <Value>$(X3RDPARTY_BIN_DIR)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
