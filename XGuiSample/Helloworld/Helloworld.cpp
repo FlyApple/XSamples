@@ -190,9 +190,26 @@ bool	XGuiHelloworld::LoadRenderWindow(HWND hWnd)
 
 	//
 	m_pCEGUIRenderer		= &CEGUI::OpenGL3Renderer::create( );
-	CEGUI::System::create( *m_pCEGUIRenderer, (CEGUI::ResourceProvider *)NULL, NULL, NULL, NULL );
+	m_pCEGUIXMLParser		= createParser();
+	m_pCEGUIImageCodec		= createImageCodec();
+	CEGUI::System::create( *m_pCEGUIRenderer, 
+		(CEGUI::ResourceProvider *)NULL, 
+		(CEGUI::XMLParser*)m_pCEGUIXMLParser, 
+		(CEGUI::ImageCodec*)m_pCEGUIImageCodec, 
+		(CEGUI::ScriptModule*)NULL,
+		"", "xgui.log");
 	m_pCEGUIWindowManager	= &CEGUI::WindowManager::getSingleton( );
 
 	//
 	return true;
+}
+
+void	XGuiHelloworld::_render()
+{
+	glClear(GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.0f, 0.0f, 0.1f, 0.0f);
+
+	CEGUI::System::getSingletonPtr()->renderAllGUIContexts();
+
+	glFinish();
 }

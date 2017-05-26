@@ -105,6 +105,11 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glew.lib;CEGUIBase.lib;CEGUIExtend.lib;CEGUIOpenGL3Renderer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>copy /y $(X3RDPARTY_BIN_DIR)\CEGUIBase.dll $(OutDir)\ 
+copy /y $(X3RDPARTY_BIN_DIR)\CEGUIExtend.dll $(OutDir)\ 
+copy /y $(X3RDPARTY_BIN_DIR)\CEGUIOpenGL3Renderer.dll $(OutDir)\ </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

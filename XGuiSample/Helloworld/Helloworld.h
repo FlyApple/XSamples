@@ -43,7 +43,10 @@
 #include <Singleton.h>
 
 #include <CEGUI/CEGUI.h>
+#include <CEGUI/XMLParserModules/TinyXML/XMLParserModule.h>
+#include <CEGUI/ImageCodecModules/FreeImage/ImageCodecModule.h>
 #include <CEGUI/RendererModules/OpenGL/GL3Renderer.h>
+
 //#include <CEGUI/ScriptingModules/LuaScriptModule/CEGUILua.h>
 
 //
@@ -102,8 +105,13 @@ public:
 
 	virtual bool	LoadRenderWindow(HWND hWnd);
 
+protected:
+	virtual void	_render();
+
 private:
 	CEGUI::OpenGL3Renderer*		m_pCEGUIRenderer;
+	CEGUI::XMLParser*			m_pCEGUIXMLParser;
+	CEGUI::ImageCodec*			m_pCEGUIImageCodec;
 	CEGUI::WindowManager*		m_pCEGUIWindowManager;
 };
 
