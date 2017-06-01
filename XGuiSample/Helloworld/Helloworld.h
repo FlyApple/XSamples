@@ -43,6 +43,7 @@
 #include <Singleton.h>
 
 #include <CEGUI/CEGUI.h>
+#include <CEGUI/DefaultResourceProvider.h>
 #include <CEGUI/XMLParserModules/TinyXML/XMLParserModule.h>
 #include <CEGUI/ImageCodecModules/FreeImage/ImageCodecModule.h>
 #include <CEGUI/RendererModules/OpenGL/GL3Renderer.h>
@@ -102,7 +103,8 @@ class XGuiHelloworld : public Helloworld
 public:
 	XGuiHelloworld();
 	virtual ~XGuiHelloworld();
-
+		
+	virtual void	Release();
 	virtual bool	LoadRenderWindow(HWND hWnd);
 
 protected:
@@ -110,6 +112,7 @@ protected:
 
 private:
 	CEGUI::OpenGL3Renderer*		m_pCEGUIRenderer;
+	CEGUI::ResourceProvider*	m_pCEGUIResourceProvider;
 	CEGUI::XMLParser*			m_pCEGUIXMLParser;
 	CEGUI::ImageCodec*			m_pCEGUIImageCodec;
 	CEGUI::WindowManager*		m_pCEGUIWindowManager;

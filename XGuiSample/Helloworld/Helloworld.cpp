@@ -181,6 +181,14 @@ XGuiHelloworld::XGuiHelloworld()
 
 XGuiHelloworld::~XGuiHelloworld()
 {
+	if(m_pCEGUIResourceProvider) { CEGUI_DELETE_AO m_pCEGUIResourceProvider; m_pCEGUIResourceProvider = NULL; }
+}
+
+void	XGuiHelloworld::Release()
+{
+	CEGUI::System::destroy();
+
+	Helloworld::Release();
 }
 
 bool	XGuiHelloworld::LoadRenderWindow(HWND hWnd)
@@ -190,15 +198,26 @@ bool	XGuiHelloworld::LoadRenderWindow(HWND hWnd)
 
 	//
 	m_pCEGUIRenderer		= &CEGUI::OpenGL3Renderer::create( );
+	m_pCEGUIResourceProvider= CEGUI_NEW_AO CEGUI::DefaultResourceProvider();
 	m_pCEGUIXMLParser		= createParser();
 	m_pCEGUIImageCodec		= createImageCodec();
 	CEGUI::System::create( *m_pCEGUIRenderer, 
-		(CEGUI::ResourceProvider *)NULL, 
+		(CEGUI::ResourceProvider *)m_pCEGUIResourceProvider, 
 		(CEGUI::XMLParser*)m_pCEGUIXMLParser, 
 		(CEGUI::ImageCodec*)m_pCEGUIImageCodec, 
 		(CEGUI::ScriptModule*)NULL,
 		"", "xgui.log");
 	m_pCEGUIWindowManager	= &CEGUI::WindowManager::getSingleton( );
+
+	//
+	static_cast<CEGUI::DefaultResourceProvider*>(m_pCEGUIResourceProvider)->setResourceGroupDirectory("ui", "../data/ui");
+	static_cast<CEGUI::DefaultResourceProvider*>(m_pCEGUIResourceProvider)->setResourceGroupDirectory("fonts", "../data/fonts");
+	static_cast<CEGUI::DefaultResourceProvider*>(m_pCEGUIResourceProvider)->setDefaultResourceGroup("ui");
+
+	CEGUI::SchemeManager::getSingleton( ).createFromFile( "WindowsLook/WindowsLook.scheme" );
+	CEGUI::FontManager::getSingleton( ).createFreeTypeFont( "commonv2c", 10, false, "commonv2c.ttf", "fonts");
+//	CEGUI::System::getSingleton().setDefaultFont( &CEGUI::FontManager::getSingleton( ).get( "Commonwealth-10" ) );
+//	CEGUI::System::getSingleton().setDefaultMouseCursor("WindowsLook", "MouseArrow");
 
 	//
 	return true;
