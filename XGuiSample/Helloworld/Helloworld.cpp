@@ -215,9 +215,18 @@ bool	XGuiHelloworld::LoadRenderWindow(HWND hWnd)
 	static_cast<CEGUI::DefaultResourceProvider*>(m_pCEGUIResourceProvider)->setDefaultResourceGroup("ui");
 
 	CEGUI::SchemeManager::getSingleton( ).createFromFile( "WindowsLook/WindowsLook.scheme" );
-	CEGUI::FontManager::getSingleton( ).createFreeTypeFont( "commonv2c", 10, false, "commonv2c.ttf", "fonts");
-//	CEGUI::System::getSingleton().setDefaultFont( &CEGUI::FontManager::getSingleton( ).get( "Commonwealth-10" ) );
-//	CEGUI::System::getSingleton().setDefaultMouseCursor("WindowsLook", "MouseArrow");
+//	CEGUI::FontManager::getSingleton( ).createFreeTypeFont( "commonv2c", 10, false, "commonv2c.ttf", "fonts");
+	CEGUI::FontManager::getSingleton( ).createFromFile("Jura-10.font", "fonts");
+	CEGUI::System::getSingletonPtr()->getDefaultGUIContext().setDefaultFont("Jura-10");
+	CEGUI::System::getSingletonPtr()->getDefaultGUIContext().getMouseCursor().setDefaultImage("WindowsLook/MouseArrow");
+
+
+	CEGUI::Window *window = CEGUI::WindowManager::getSingleton().loadLayoutFromFile("Layout/ceguitest.layout");
+	CEGUI::System::getSingletonPtr()->getDefaultGUIContext().setRootWindow(window);
+
+	//
+	CEGUI::MultiLineEditbox* editbox	= static_cast<CEGUI::MultiLineEditbox*>(window->getChild("CeguiTestDlg2/mleditbox"));
+	editbox->setText( "this text program added.\n" );
 
 	//
 	return true;

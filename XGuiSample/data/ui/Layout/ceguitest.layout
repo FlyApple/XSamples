@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4">
+    <Window type="DefaultWindow" name="Root" >
+        <Property name="Area" value="{{0,0},{0,0},{1,0},{1,0}}" />
+        <Window type="WindowsLook/FrameWindow" name="CeguiTestDlg1" >
+            <Property name="Font" value="Jura-10" />
+            <Property name="TitlebarFont" value="Jura-10" />
+            <Property name="RollUpEnabled" value="False" />
+            <Property name="TitlebarEnabled" value="True" />
+            <Property name="Area" value="{{0.152539,0},{0.201199,0},{0.516797,0},{0.702307,0}}" />
+            <Property name="Text" value="Text sample" />
+            <Window type="WindowsLook/MultiColumnList" name="mclist" >
+                <Property name="Area" value="{{0.0219839,0},{0.0297201,0},{0.974396,0},{0.961296,0}}" />
+            </Window>
+        </Window>
+        <Window type="WindowsLook/FrameWindow" name="CeguiTestDlg2" >
+            <Property name="TitlebarFont" value="Jura-10" />
+            <Property name="TitlebarEnabled" value="True" />
+            <Property name="Area" value="{{0.117383,0},{0.324631,0},{0.458203,0},{0.83243,0}}" />
+            <Window type="WindowsLook/MultiLineEditbox" name="mleditbox" >
+                <Property name="Text" ></Property>
+                <Property name="MaxTextLength" value="1073741823" />
+                <Property name="Area" value="{{0.027507,0},{0.0443006,0},{0.968052,0},{0.953961,0}}" />
+                <Property name="TextParsingEnabled" value="False" />
+            </Window>
+        </Window>
+    </Window>
+</GUILayout>
